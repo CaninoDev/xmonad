@@ -12,7 +12,7 @@ import           System.Exit
 -- | The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 myTerminal :: String
-myTerminal = "xterm"
+myTerminal = "tilix"
 
 -- | Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -28,7 +28,7 @@ myClickJustFocuses = True
 -- "windows key" is usually mod4Mask.
 --
 myDefaultModMask :: KeyMask
-myDefaultModMask = mod1Mask
+myDefaultModMask = mod4Mask -- The command key on Macbook Pro
 
 -- | The xmonad key bindings. Add, modify or remove key bindings here.
 --
