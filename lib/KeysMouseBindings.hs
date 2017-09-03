@@ -6,6 +6,7 @@ import XMonad.Prompt.Shell
 import qualified Data.Map        as M
 import qualified XMonad.StackSet as W
 
+import PromptConfig (myXPConfig)
 import           System.Exit
 ------------------------------------------------------------------------
 -- Key bindings:
@@ -39,7 +40,7 @@ myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
-    , ((modMask,               xK_p     ), shellPrompt def)
+    , ((modMask,               xK_p     ), shellPrompt myXPConfig)
     , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun") -- %! Launch gmrun
     , ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
 
