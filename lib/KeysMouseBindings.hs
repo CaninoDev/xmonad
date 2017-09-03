@@ -1,7 +1,8 @@
 module KeysMouseBindings where
 
 import           XMonad
-
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import qualified Data.Map        as M
 import qualified XMonad.StackSet as W
 
@@ -38,7 +39,7 @@ myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
-    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
+    , ((modMask,               xK_p     ), shellPrompt def)
     , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun") -- %! Launch gmrun
     , ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
 
