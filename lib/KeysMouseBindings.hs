@@ -74,7 +74,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- quit, or restart
     , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- %! Quit xmonad
-    , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
+    , ((modMask              , xK_q     ), spawn "xmonad --recompile && xmonad --restart && notify-send '\59255 xmonad reloaded successfully'") -- %! Restart xmonad
 
     , ((modMask .|. shiftMask, xK_slash ), helpCommand)
     -- repeat the binding for non-American layout keyboards
