@@ -1,9 +1,9 @@
 module Layout (layout,myBorderWidth, myWorkspaces, myNormalBorderColor, myFocusedBorderColor) where
 
-import           XMonad        (Dimension, Layout, (|||))
-import           XMonad.Core   (WorkspaceId)
+import           XMonad                (Dimension, Layout, (|||))
+import           XMonad.Core           (WorkspaceId)
 import           XMonad.Layout
-
+import           XMonad.Layout.Spacing (Spacing, spacing)
 ------------------------------------------------------------------------
 -- Extensible layouts
 --
@@ -15,7 +15,7 @@ import           XMonad.Layout
 
 -- | The available layouts.  Note that each layout is separated by |||, which
 -- denotes layout choice.
-layout = tiled ||| Mirror tiled ||| Full
+layout = spacing 10 $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
