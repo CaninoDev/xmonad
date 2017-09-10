@@ -1,12 +1,13 @@
 module KeysMouseBindings where
 
+import qualified Data.Map            as M
 import           XMonad
-import XMonad.Prompt
-import XMonad.Prompt.Shell
-import qualified Data.Map        as M
-import qualified XMonad.StackSet as W
+import           XMonad.Prompt
+import           XMonad.Prompt.Shell hiding (shellPrompt)
+import qualified XMonad.StackSet     as W
 
-import           PromptConfig        (brwsrPrompt, myBrwsrConfig, myXPConfig)
+import           PromptConfig        (brwsrPrompt, myBrwsrConfig, myXPConfig,
+                                      shellPrompt)
 import           System.Exit
 ------------------------------------------------------------------------
 -- Key bindings:
