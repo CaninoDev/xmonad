@@ -6,9 +6,11 @@ import           XMonad.Prompt
 import           XMonad.Prompt.Shell hiding (shellPrompt)
 import qualified XMonad.StackSet     as W
 
-import           PromptConfig        (brwsrPrompt, myBrwsrConfig, myXPConfig,
-                                      shellPrompt)
+import           PromptConfig          (brwsrPrompt, myBrwsrConfig,
+                                        mySrchConfig, myXPConfig, shellPrompt)
 import           System.Exit
+import qualified XMonad.Actions.Search as S
+import qualified XMonad.Actions.Submap as SM
 ------------------------------------------------------------------------
 -- Key bindings:
 
@@ -42,9 +44,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
     , ((modMask,               xK_p     ), shellPrompt myXPConfig)
-    , ((modMask,               xK_b     ), brwsrPrompt "firefox" myBrwsrConfig) -- %! Launch gmrun
+    , ((modMask,               xK_b     ), brwsrPrompt "firefox" myBrwsrConfig) -- %! Launch firefox
     , ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
-
+    , ((modMask,               xK_s     ), SM.submap $ searchEngineMap $ S.promptSearch mySrchConfig)
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
 
@@ -111,6 +113,12 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
+-- define the searchlist to use with modMask+s
+searchEngineMap method = M.fromList $
+      [ ((0, xK_g), method S.google)
+      , ((0, xK_h), method S.hoogle)
+      , ((0, xK_w), method S.wikipedia)
+      ]
 -- Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
 help = unlines ["The default modifier key is 'alt'. Default keybindings:",

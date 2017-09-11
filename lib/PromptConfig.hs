@@ -1,4 +1,4 @@
-module PromptConfig ( myXPConfig, myBrwsrConfig, brwsrPrompt, shellPrompt ) where
+module PromptConfig ( myXPConfig, myBrwsrConfig, mySrchConfig, brwsrPrompt, shellPrompt ) where
 
 import           Data.Default        (def)
 import           XMonad
@@ -55,6 +55,20 @@ myBrwsrConfig =  def { XP.font              = "xft:RobotoMono Nerd Font:pixelsiz
                      , XP.position          = CenteredAt 0.25 0.5
                      , XP.height            = 50
                      }
+
+-- Define the searchprompt template
+mySrchConfig :: XPConfig
+mySrchConfig =   def { XP.font              = "xft:RobotoMono Nerd Font:pixelsize=24"
+                     , XP.bgColor           = base02
+                     , XP.fgColor           = base3
+                     , XP.fgHLight          = active
+                     , XP.bgHLight          = base02
+                     , XP.borderColor       = blue
+                     , XP.promptBorderWidth = 0
+                     , XP.position          = CenteredAt 0.25 0.5
+                     , XP.height            = 50
+                     }
+
 -- Function to define escape (to get out of the prompt)
 escape :: String -> String
 escape []       = ""
