@@ -17,7 +17,7 @@ import qualified XMonad.Actions.Submap as SM
 -- | The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 myTerminal :: String
-myTerminal = "tilix"
+myTerminal = "urxvt"
 
 -- | Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
