@@ -1,6 +1,7 @@
-module ManageHook where
+module XMonad.Custom.ManageHook where
 
 import           XMonad
+
 ------------------------------------------------------------------------
 -- Window rules
 

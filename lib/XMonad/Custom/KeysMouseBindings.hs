@@ -1,16 +1,17 @@
-module KeysMouseBindings where
+module XMonad.Custom.KeysMouseBindings where
 
-import qualified Data.Map            as M
+import qualified Data.Map                   as M
 import           XMonad
 import           XMonad.Prompt
-import           XMonad.Prompt.Shell hiding (shellPrompt)
-import qualified XMonad.StackSet     as W
+import           XMonad.Prompt.Shell        hiding (shellPrompt)
+import qualified XMonad.StackSet            as W
 
-import           PromptConfig          (brwsrPrompt, myBrwsrConfig,
-                                        mySrchConfig, myXPConfig, shellPrompt)
 import           System.Exit
-import qualified XMonad.Actions.Search as S
-import qualified XMonad.Actions.Submap as SM
+import qualified XMonad.Actions.Search      as S
+import qualified XMonad.Actions.Submap      as SM
+import           XMonad.Custom.PromptConfig (brwsrPrompt, myBrwsrConfig,
+                                             mySrchConfig, myXPConfig,
+                                             shellPrompt)
 ------------------------------------------------------------------------
 -- Key bindings:
 

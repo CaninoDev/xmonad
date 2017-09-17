@@ -1,4 +1,4 @@
-module LogHook where
+module XMonad.Custom.LogHook where
 
 import           XMonad
 ------------------------------------------------------------------------

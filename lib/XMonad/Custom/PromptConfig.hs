@@ -1,4 +1,4 @@
-module PromptConfig ( myXPConfig, myBrwsrConfig, mySrchConfig, brwsrPrompt, shellPrompt ) where
+module XMonad.Custom.PromptConfig ( myXPConfig, myBrwsrConfig, mySrchConfig, brwsrPrompt, shellPrompt ) where
 
 import           Data.Default        (def)
 import           XMonad

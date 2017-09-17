@@ -1,16 +1,18 @@
-import		 XMonad.Hooks.ManageDocks
-
-import           KeysMouseBindings
-import           Layout
-import           LogHook           as LG
-import           ManageHook        as M
-import           StartupHook       as ST
+{-# OPTIONS -fno-warn-missing-signatures #-}
 
 import           XMonad
+import           XMonad.Hooks.EwmhDesktops        (ewmh)
+import           XMonad.Hooks.ManageDocks
+
+import           XMonad.Custom.KeysMouseBindings
+import           XMonad.Custom.Layout
+import           XMonad.Custom.LogHook            as LG
+import           XMonad.Custom.ManageHook         as M
+import           XMonad.Custom.StartupHook        as ST
 
 main :: IO ()
 main = do
-    xmonad $ docks myConfig                                 -- Add docks functionality to the given config
+    xmonad $ ewmh $ docks myConfig  -- Add docks functionality to the given config
 
 myConfig = def
   { XMonad.borderWidth        = myBorderWidth
