@@ -13,5 +13,5 @@ import           XMonad
 --
 -- See the 'DynamicLog' extension for examples.
 --
-logHook :: X ()
-logHook = return ()
+myLogHook :: X ()
+myLogHook = return ()

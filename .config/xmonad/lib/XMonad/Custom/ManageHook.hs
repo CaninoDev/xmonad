@@ -14,7 +14,7 @@ import           XMonad
 --  xprop | grep WM_CLASS
 -- and click on the client you're interested in.
 --
-manageHook :: ManageHook
-manageHook = composeAll
+myManageHook :: ManageHook
+myManageHook = composeAll
                 [ className =? "MPlayer"        --> doFloat
                 , className =? "mplayer2"       --> doFloat ]

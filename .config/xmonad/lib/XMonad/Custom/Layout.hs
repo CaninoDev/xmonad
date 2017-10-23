@@ -1,4 +1,4 @@
-module XMonad.Custom.Layout (layout, myBorderWidth, myWorkspaces, myNormalBorderColor, myFocusedBorderColor) where
+module XMonad.Custom.Layout (myLayout, myBorderWidth, myWorkspaces, myNormalBorderColor, myFocusedBorderColor) where
 
 import           XMonad                (Dimension, Layout, (|||))
 import           XMonad.Core           (WorkspaceId)
@@ -17,7 +17,7 @@ import           XMonad.Layout.Spacing (Spacing, spacing)
 -- | The available layouts.  Note that each layout is separated by |||, which
 -- denotes layout choice.
 
-layout = spacing 10 $ (tiled ||| Mirror tiled ||| Full ||| oneBig)
+myLayout = spacing 10 $ (tiled ||| Mirror tiled ||| Full ||| oneBig)
 
   where
      -- default tiling algorithm partitions the screen into two panes

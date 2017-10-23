@@ -33,7 +33,6 @@ myXPConfig = def { XP.font                = "xft:RobotoMono Nerd Font:pixelsize=
 
 -- Create a new prompt for use specifically with browserprompt
 data BrwsrPrompt = BrwsrPrompt
-type Predicate = String -> String -> Bool
 
 instance XPrompt BrwsrPrompt where
     showXPrompt BrwsrPrompt  = "\59205  "
