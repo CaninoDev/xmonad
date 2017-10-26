@@ -1,14 +1,18 @@
-{-# OPTIONS -fno-warn-missing-signatures #-}
+{-# OPTIONS -fno-warn-missing-signatures -ilib #-}
 
-import           XMonad
-import           XMonad.Hooks.EwmhDesktops        (ewmh)
-import           XMonad.Hooks.ManageDocks
+import XMonad
+import XMonad.Hooks.EwmhDesktops (ewmh)
+import XMonad.Hooks.ManageDocks
 
-import           XMonad.Custom.KeysMouseBindings
-import           XMonad.Custom.Layout
-import           XMonad.Custom.LogHook
-import           XMonad.Custom.ManageHook
-import           XMonad.Custom.StartupHook
+{- import XMonad.Hooks.UrgencyHook (UrgencyHook, urgencyHook, withUrgencyHook) -}
+import KeysMouseBindings
+import Layout
+import LogHook
+import ManageHook
+import StartupHook
+
+import qualified DBus as D
+import qualified DBus.Client as D.Client
 
 main :: IO ()
 main =

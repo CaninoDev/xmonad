@@ -1,10 +1,17 @@
-module XMonad.Custom.Layout (myLayout, myBorderWidth, myWorkspaces, myNormalBorderColor, myFocusedBorderColor) where
+module Layout
+  ( myLayout
+  , myBorderWidth
+  , myWorkspaces
+  , myNormalBorderColor
+  , myFocusedBorderColor
+  ) where
 
-import           XMonad                (Dimension, Layout, (|||))
-import           XMonad.Core           (WorkspaceId)
-import           XMonad.Layout
-import           XMonad.Layout.OneBig
-import           XMonad.Layout.Spacing (Spacing, spacing)
+import XMonad (Dimension, Layout, (|||))
+import XMonad.Core (WorkspaceId)
+import XMonad.Layout
+import XMonad.Layout.OneBig
+import XMonad.Layout.Spacing (Spacing, spacing)
+
 ------------------------------------------------------------------------
 -- Extensible layouts
 --
@@ -13,27 +20,20 @@ import           XMonad.Layout.Spacing (Spacing, spacing)
 -- restarting (with 'mod-q') to reset your layout state to the new
 -- defaults, as xmonad preserves your old layout settings by default.
 --
-
 -- | The available layouts.  Note that each layout is separated by |||, which
 -- denotes layout choice.
-
 myLayout = spacing 10 $ (tiled ||| Mirror tiled ||| Full ||| oneBig)
-
-  where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
+  where
+    tiled = Tall nmaster delta ratio
      -- The default number of windows in the master pane
-     nmaster = 1
-
+    nmaster = 1
      -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-
+    ratio = 1 / 2
      -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
-
+    delta = 3 / 100
      -- define the one big layout  in terms of portion fo the sreen for the master window to occupy
-     oneBig   = OneBig (1/3) (1/3)
+    oneBig = OneBig (1 / 3) (1 / 3)
 
 -- | The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -55,7 +55,7 @@ myBorderWidth = 1
 -- | Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor :: String
-myNormalBorderColor  = "#dddddd"
+myNormalBorderColor = "#dddddd"
 
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#ff0000"

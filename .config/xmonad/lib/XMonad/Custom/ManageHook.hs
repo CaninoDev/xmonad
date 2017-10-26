@@ -1,10 +1,9 @@
-module XMonad.Custom.ManageHook where
+module ManageHook where
 
-import           XMonad
+import XMonad
 
 ------------------------------------------------------------------------
 -- Window rules
-
 -- | Execute arbitrary actions and WindowSet manipulations when managing
 -- a new window. You can use this to, for example, always float a
 -- particular program, or have a client always appear on a particular
