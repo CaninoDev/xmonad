@@ -6,18 +6,22 @@ import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
 
 import KeysMouseBindings
+       (myDefaultModMask, myFocusFollowsMouse, myKeys, myMouseBindings, myTerminal)
 import Layout
-import LogHook
-import ManageHook
-import StartupHook
+       (myBorderWidth, myLayout, myNormalBorderColor,
+        myWorkspaces)
+import LogHook (dBusInterface, dBusMember, dBusPath, myLogHook)
+import ManageHook (myManageHook)
+import StartupHook (myStartupHook)
 
 import qualified DBus as D
-import qualified DBus.Client as D.Client
 
 main :: IO ()
 main = do
-  dbusLine <- connectDBusClient -- connect to dbus to interface with statusbars and pass on the connection to LogHook
-  xmonad $ ewmh $ myConfig dbusLine
+  dbusLine <- D.connectSession
+  D.requestName dbusLine (D.busName_ dBusInterface)
+  [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+  xmonad . ewmh $ myConfig dbusLine
 
 myConfig dbusLine =
   def
