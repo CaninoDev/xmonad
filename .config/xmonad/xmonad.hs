@@ -5,22 +5,22 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
 
-import KeysMouseBindings
-       (myDefaultModMask, myFocusFollowsMouse, myKeys, myMouseBindings, myTerminal)
-import Layout
-       (myBorderWidth, myLayout, myNormalBorderColor,
+import qualified DBus as D
+import qualified DBus.Client as D
+
+import KeysMouseBindings (myClickJustFocuses, myDefaultModMask, myFocusFollowsMouse, myKeys, myMouseBindings, myTerminal)
+import Layout (myFocusedBorderColor, myBorderWidth, myLayout, myNormalBorderColor,
         myWorkspaces)
-import LogHook (dBusInterface, dBusMember, dBusPath, myLogHook)
+import LogHook (dBusInterface, dBusMember, dBusPath, myPolybar)
 import ManageHook (myManageHook)
 import StartupHook (myStartupHook)
 
-import qualified DBus as D
 
 main :: IO ()
 main = do
   dbusLine <- D.connectSession
-  D.requestName dbusLine (D.busName_ dBusInterface)
-  [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+  D.requestName dbusLine (D.busName_ "org.xmonad.Log")
+    [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
   xmonad . ewmh $ myConfig dbusLine
 
 myConfig dbusLine =
@@ -33,7 +33,7 @@ myConfig dbusLine =
   , focusedBorderColor = myFocusedBorderColor
   , modMask = myDefaultModMask
   , keys = myKeys
-  , logHook = myLogHook dbusLine
+  , logHook = dynamicLogWithPP (myPolybar dbusLine)
   , startupHook = myStartupHook
   , mouseBindings = myMouseBindings
   , manageHook = myManageHook

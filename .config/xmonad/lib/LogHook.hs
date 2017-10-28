@@ -2,6 +2,7 @@ module LogHook
   ( myLogHook
   , dBusInterface
   , dBusPath
+  , myPolybar
   , dBusMember
   {- , connectDBusClient -}
   ) where
@@ -16,16 +17,32 @@ import XMonad.Hooks.DynamicLog
 
 import qualified Codec.Binary.UTF8.String as UTF8
 
+
 -- Define the specific parameters for this dbus Connection
 dBusInterface = "org.xmonad.Log"
 
-dBusPath = "/org/xmonad/log"
+dBusPath = "/org/xmonad/Log"
 
 dBusMember = "Update"
 
-myLogHook :: D.Client -> X ()
-myLogHook dbusLine = do
-  dynamicLogWithPP $ def {ppOutput = signalDBus dbusLine}
+myPolybar :: D.Client -> PP
+myPolybar dbus = def
+    { ppOutput = signalDBus dbus
+    , ppCurrent = wrap ("%{B" ++ bg2 ++ "} ") " %{B-}"
+    , ppVisible = wrap ("%{B" ++ bg1 ++ "} ") " %{B-}"
+    , ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}"
+    , ppHidden = wrap " " " "
+    , ppWsSep = ""
+    , ppSep = " : "
+    , ppTitle = shorten 40
+}
+-- Polybar
+bg1       = "#3c3836"
+bg2       = "#504945"
+red       = "#fb4934"
+
+myLogHook :: D.Client -> PP
+myLogHook dbusLine = def { ppOutput = signalDBus dbusLine }
   {- ewmhDesktopsLogHook -}
 
 -- Called in xmonad.hs, placed here for legibility
@@ -38,9 +55,6 @@ myLogHook dbusLine = do
 {-     dBusParams = -}
 {-       [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue] -}
 -- This is the meat of the interface between dbus and xmonad via dynamicLogWithPP
-{- processDBusLog :: D.Client -> X () -}
-{- processDBusLog dbusLine -}
--- Emit a DBus signal on log updates
 signalDBus :: D.Client -> String -> IO ()
 signalDBus client message = do
   let signal =
