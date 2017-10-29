@@ -23,7 +23,6 @@ vlcPiP = monitor {
     , rect = Rectangle 78 111 499 302
     -- Avoid flickering
     , persistent = True
-    , opacity = 0.7
     , name = "vlcPiP"
     , visible = True
     }
