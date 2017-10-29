@@ -1,6 +1,8 @@
 module LogHook
   ( myLogHook
-  , connectDBusClient
   ) where
+
+import XMonad
+
 myLogHook :: X ()
-mylogHook = return ()
+myLogHook = return ()
