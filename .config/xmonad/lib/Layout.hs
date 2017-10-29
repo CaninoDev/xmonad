@@ -50,7 +50,16 @@ myLayout =
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = map show [1 .. 9 :: Int]
+myWorkspaces = [ "\xf0ac" -- Globus icon
+               , "\xf121" -- Code icon
+               , "\xf120" -- Terminal icon
+               , "4"
+               , "5"
+               , "6"
+               , "7"
+               , "8"
+               , "\xf26c" -- TV icon
+               ]
 
 -- | Width of the window border in pixels.
 --
