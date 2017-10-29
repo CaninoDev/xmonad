@@ -4,16 +4,29 @@ module Layout
   , myWorkspaces
   , myNormalBorderColor
   , myFocusedBorderColor
+  , vlcPiP
   ) where
 
+import XMonad
 import XMonad (Dimension, Layout, (|||))
 import XMonad.Core (WorkspaceId)
 import XMonad.Layout
+import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.OneBig
 import XMonad.Layout.Spacing (Spacing, spacing)
+import XMonad.Layout.Monitor
 
+vlcPiP = monitor {
+    prop = ClassName "vlc"
+    , rect = Rectangle 78 111 499 302
+    -- Avoid flickering
+    , persistent = True
+    , opacity = 0.7
+    , name = "vlcPiP"
+    , visible = True
+    }
 ------------------------------------------------------------------------
 -- Extensible layouts
 --
@@ -25,7 +38,7 @@ import XMonad.Layout.Spacing (Spacing, spacing)
 -- | The available layouts.  Note that each layout is separated by |||, which
 -- denotes layout choice.
 myLayout =
-  spacing 5 $
+  ModifiedLayout vlcPiP $ spacing 5 $
   (tiled |||
    Mirror tiled ||| oneBig ||| Full ||| noBorders (fullscreenFull Full))
      -- default tiling algorithm partitions the screen into two panes
@@ -73,3 +86,4 @@ myNormalBorderColor = "#dddddd"
 
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#ff0000"
+

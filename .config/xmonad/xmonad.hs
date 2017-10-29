@@ -3,7 +3,7 @@
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
-
+import XMonad.Layout.Monitor
 {- import XMonad.Hooks.UrgencyHook (UrgencyHook, urgencyHook, withUrgencyHook) -}
 import KeysMouseBindings
 import Layout
@@ -30,7 +30,7 @@ myConfig = def
     , logHook                 = myLogHook
     , startupHook             = myStartupHook
     , mouseBindings           = myMouseBindings
-    , manageHook              = myManageHook
+    , manageHook              = myManageHook <+> manageMonitor vlcPiP
     , focusFollowsMouse       = myFocusFollowsMouse
     , clickJustFocuses        = myClickJustFocuses
     , handleEventHook         = docksEventHook              -- Whenever a new dock appears, refresh the layout immediately to avoid the new dock

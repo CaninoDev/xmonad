@@ -12,6 +12,7 @@ import PromptConfig
 import System.Exit
 import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.Submap as SM
+import XMonad.Layout.Monitor
 
 ------------------------------------------------------------------------
 -- Key bindings:
@@ -76,6 +77,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) =
     -- increase or decrease number of windows in the master area
   , ((modMask, xK_comma), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
   , ((modMask, xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
+  , ((modMask, xK_m), broadcastMessage ToggleMonitor >> refresh)
   -- multimedia keys
   -- control monitor brightness
   , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 10 -steps 1024 -time 80")
