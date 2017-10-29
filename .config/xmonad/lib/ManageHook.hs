@@ -1,7 +1,7 @@
 module ManageHook where
 
 import XMonad
-
+import XMonad.Hooks.ManageHelpers
 ------------------------------------------------------------------------
 -- Window rules
 -- | Execute arbitrary actions and WindowSet manipulations when managing
@@ -16,4 +16,7 @@ import XMonad
 myManageHook :: ManageHook
 myManageHook = composeAll
                 [ className =? "MPlayer"        --> doFloat
-                , className =? "mplayer2"       --> doFloat ]
+                , className =? "mplayer2"       --> doFloat
+                , className =? "Settings"       --> doCenterFloat
+                , isDialog                      --> doCenterFloat
+                ]
