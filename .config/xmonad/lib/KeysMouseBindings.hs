@@ -5,9 +5,10 @@ import XMonad
 import XMonad.Prompt
 import XMonad.Prompt.Shell hiding (shellPrompt)
 import qualified XMonad.StackSet as W
-
+import XMonad.Hooks.ManageDocks
 import PromptConfig
        (brwsrPrompt, myBrwsrConfig, mySrchConfig, myXPConfig, shellPrompt)
+import XMonad.Layout.Monitor
 import System.Exit
 import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.Submap as SM
@@ -66,6 +67,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) =
   , ((modMask, xK_l), sendMessage Expand) -- %! Expand the master area
     -- floating layer support
   , ((modMask, xK_t), withFocused $ windows . W.sink) -- %! Push window back into tiling
+  , ((modMask, xK_m), broadcastMessage ToggleMonitor >> refresh)
+  , ((modMask, xK_b), sendMessage ToggleStruts)
+
     -- increase or decrease number of windows in the master area
   , ((modMask, xK_comma), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
   , ((modMask, xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
