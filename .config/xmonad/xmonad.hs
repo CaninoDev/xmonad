@@ -1,7 +1,7 @@
 {-# OPTIONS -fno-warn-missing-signatures #-}
 
 import XMonad
-import XMonad.Hooks.EwmhDesktops (ewmh)
+import XMonad.Hooks.EwmhDesktops (ewmh, ewmhDesktopsEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Monitor
 {- import XMonad.Hooks.UrgencyHook (UrgencyHook, urgencyHook, withUrgencyHook) -}
@@ -33,5 +33,5 @@ myConfig = def
     , manageHook              = myManageHook <+> manageMonitor vlcPiP
     , focusFollowsMouse       = myFocusFollowsMouse
     , clickJustFocuses        = myClickJustFocuses
-    , handleEventHook         = docksEventHook              -- Whenever a new dock appears, refresh the layout immediately to avoid the new dock
+    , handleEventHook         = docksEventHook <+> ewmhDesktopsEventHook              -- Whenever a new dock appears, refresh the layout immediately to avoid the new dock
   }
