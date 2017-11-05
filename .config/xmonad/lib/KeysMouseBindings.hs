@@ -19,7 +19,7 @@ import XMonad.Layout.Monitor
 -- | The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 myTerminal :: String
-myTerminal = "tilix"
+myTerminal = "rxvt-unicode"
 
 -- | Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool

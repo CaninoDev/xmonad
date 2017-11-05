@@ -1,4 +1,4 @@
-{-# OPTIONS -fno-warn-missing-signatures -ilib #-}
+{-# OPTIONS -fno-warn-missing-signatures #-}
 
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh)

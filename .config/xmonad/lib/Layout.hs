@@ -20,9 +20,10 @@ import XMonad.Layout.Monitor
 
 vlcPiP = monitor {
     prop = ClassName "vlc"
-    , rect = Rectangle 78 111 499 302
+      , rect = Rectangle 605 318 1196 674
     -- Avoid flickering
     , persistent = True
+      , opacity =0.8
     , name = "vlcPiP"
     , visible = True
     }
