@@ -15,7 +15,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.OneBig
-import XMonad.Layout.Spacing (Spacing, spacing)
+import XMonad.Layout.Spacing 
 import XMonad.Layout.Monitor
 
 vlcPiP = monitor {
@@ -38,7 +38,7 @@ vlcPiP = monitor {
 -- | The available layouts.  Note that each layout is separated by |||, which
 -- denotes layout choice.
 myLayout =
-  ModifiedLayout vlcPiP $ spacing 5 $
+  ModifiedLayout vlcPiP $ spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True $
   (tiled |||
    Mirror tiled ||| oneBig ||| Full ||| noBorders (fullscreenFull Full))
      -- default tiling algorithm partitions the screen into two panes
