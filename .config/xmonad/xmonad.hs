@@ -11,8 +11,8 @@ import LogHook
 import ManageHook
 import StartupHook
 
-import qualified DBus as D
-import qualified DBus.Client as D.Client
+-- import qualified DBus as D
+-- import qualified DBus.Client as D.Client
 
 main :: IO ()
 main =
@@ -28,7 +28,7 @@ myConfig = def
     , modMask                 = myDefaultModMask
     , keys                    = myKeys
     , logHook                 = myLogHook
-    , startupHook             = myStartupHook
+  --   , startupHook             = myStartupHook
     , mouseBindings           = myMouseBindings
     , manageHook              = myManageHook <+> manageMonitor vlcPiP
     , focusFollowsMouse       = myFocusFollowsMouse

@@ -1,4 +1,7 @@
-module ManageHook where
+module ManageHook (
+myManageHook
+)
+where
 
 import XMonad
 import XMonad.Hooks.ManageHelpers

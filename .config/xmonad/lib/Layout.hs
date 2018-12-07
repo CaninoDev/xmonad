@@ -8,15 +8,16 @@ module Layout
   ) where
 
 import XMonad
-import XMonad (Dimension, Layout, (|||))
+import XMonad (Dimension, (|||))
 import XMonad.Core (WorkspaceId)
 import XMonad.Layout
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.OneBig
-import XMonad.Layout.Spacing 
+import XMonad.Layout.Spacing
 import XMonad.Layout.Monitor
+import XMonad.Layout.Minimize
 
 vlcPiP = monitor {
     prop = ClassName "vlc"
@@ -38,7 +39,7 @@ vlcPiP = monitor {
 -- | The available layouts.  Note that each layout is separated by |||, which
 -- denotes layout choice.
 myLayout =
-  ModifiedLayout vlcPiP $ spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True $
+  ModifiedLayout vlcPiP $ spacingRaw True (Border 0 0 0 0) True (Border 10 10 10 10) True $ minimize
   (tiled |||
    Mirror tiled ||| oneBig ||| Full ||| noBorders (fullscreenFull Full))
      -- default tiling algorithm partitions the screen into two panes
@@ -77,7 +78,7 @@ myWorkspaces = [ "\xf0ac" -- Globus icon
 -- | Width of the window border in pixels.
 --
 myBorderWidth :: Dimension
-myBorderWidth = 1
+myBorderWidth = 2
 
 -- | Border colors for unfocused and focused windows, respectively.
 --
