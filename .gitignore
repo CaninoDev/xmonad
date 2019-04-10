@@ -21,3 +21,5 @@ xmonad-x86_64-linux
 xmonad.errors
 xmonad-session-rc
 prompt-history
+*.*
+*
