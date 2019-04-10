@@ -20,19 +20,20 @@ import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.Submap as SM
 import XMonad.Layout.Monitor
 import XMonad.Actions.Minimize
-import XMonad.Prompt.Window ( windowPromptGoto )
+import XMonad.Prompt
+import XMonad.Prompt.Window
 
 ------------------------------------------------------------------------
 -- Key bindings:
 -- | The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 myTerminal :: String
-myTerminal = "tilix"
+myTerminal = "alacritty"
 
 -- | The preferred browser, whic is used in a binding below and by certain contrib
 -- modules.
 myBrowser :: String
-myBrowser = "google-chrome"
+myBrowser = "firefox"
 
 -- | Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -48,7 +49,7 @@ myClickJustFocuses = True
 -- "windows key" is usually mod4Mask.
 --
 myDefaultModMask :: KeyMask
-myDefaultModMask = mod4Mask -- The command key on Macbook Pro
+myDefaultModMask = mod1Mask -- The command key on Macbook Pro
 
 -- | The xmonad key bindings. Add, modify or remove key bindings here.
 --
@@ -61,7 +62,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} =
     -- launching and killing programs
   [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
   , ((modMask, xK_p), shellPrompt myXPConfig)
-  , ((modMask .|. shiftMask, xK_p), windowPromptGoto myXPConfig)
+  , ((modMask .|. shiftMask, xK_p), windowPrompt myXPConfig Goto wsWindows)
   , ((modMask, xK_b), brwsrPrompt myBrowser myBrwsrConfig) -- %! Launch web browser
   , ((modMask .|. shiftMask, xK_c), kill) -- %! Close the focused window
   , ((modMask, xK_s), SM.submap $ searchEngineMap $ S.promptSearch mySrchConfig)
