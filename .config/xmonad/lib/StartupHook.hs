@@ -1,6 +1,7 @@
 module StartupHook where
 
 
+
 import XMonad
 import XMonad.Hooks.SetWMName
 
@@ -10,5 +11,6 @@ myStartupHook :: X ()
 myStartupHook =
   setWMName "LG3d"
   >> spawn "redshift-gtk-restart"
-  >> spawn "/usr/bin/nm-applet"
+  -- >> spawn "/usr/bin/nm-applet"
+  >> spawn "compton -b --config /home/caninodev/.config/compton.conf"
   >> spawn "xsetroot -cursor_name left_ptr"
