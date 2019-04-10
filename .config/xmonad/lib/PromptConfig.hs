@@ -30,13 +30,13 @@ shellPrompt c = do
 myXPConfig :: XPConfig
 myXPConfig =
   def
-  { XP.font = "xft:RobotoMono Nerd Font:pixelsize=24"
+  { XP.font = "xft:SFMono Nerd Font Mono:pixelsize=14"
   , XP.bgColor = base02
   , XP.fgColor = base1
   , XP.fgHLight = active
   , XP.bgHLight = base02
   , XP.borderColor = base01
-  , XP.promptBorderWidth = 1
+  , XP.promptBorderWidth = 0
   , XP.position = CenteredAt 0.25 0.5
   , XP.height = 50
   }
@@ -59,7 +59,7 @@ brwsrPrompt c config =
 myBrwsrConfig :: XPConfig
 myBrwsrConfig =
   def
-  { XP.font = "xft:RobotoMono Nerd Font:pixelsize=12"
+  { XP.font = "xft:SFMono Nerd Font Mono:pixelsize=14"
   , XP.bgColor = base02
   , XP.fgColor = base3
   , XP.fgHLight = active
@@ -74,7 +74,7 @@ myBrwsrConfig =
 mySrchConfig :: XPConfig
 mySrchConfig =
   def
-  { XP.font = "xft:RobotoMono Nerd Font:pixelsize=24"
+  { XP.font = "xft:SFMono Nerd Font Mono:pixelsize=14"
   , XP.bgColor = base02
   , XP.fgColor = base3
   , XP.fgHLight = active
