@@ -18,7 +18,7 @@ import XMonad.Hooks.ManageHelpers
 --
 myManageHook :: ManageHook
 myManageHook = composeAll
-                [ className =? "MPlayer"        --> doFloat
+                [ className =? "vlc"            --> doFloat
                 , className =? "mplayer2"       --> doFloat
                 , className =? "Settings"       --> doCenterFloat
                 , isDialog                      --> doCenterFloat
