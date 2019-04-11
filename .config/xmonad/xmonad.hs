@@ -16,6 +16,7 @@ import StartupHook
 
 main :: IO ()
 main =
+    xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmobarrc"
     xmonad $ ewmh $ docks myConfig  -- Add docks functionality to the given config
 
 myConfig = def
