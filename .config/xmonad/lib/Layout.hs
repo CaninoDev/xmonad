@@ -67,11 +67,11 @@ myWorkspaces :: [WorkspaceId]
 myWorkspaces = [ "\xf0ac" -- Globus icon
                , "\xf121" -- Code icon
                , "\xf120" -- Terminal icon
-               , "4"
-               , "5"
-               , "6"
-               , "7"
-               , "8"
+               , "\xfd4a"
+               , "\xf67f"
+               , "\xe624"
+               , "\xe642"
+               , "\xe612"
                , "\xf26c" -- TV icon
                ]
 
