@@ -1,16 +1,30 @@
-module LogHook
-  ( myLogHook
-  ) where
+module LogHook where
 
 import XMonad
 import XMonad.Hooks.DynamicLog
 
-myLogHook :: X ()
-myLogHook = dyanmicLogWithPP xmobarPP
-  { ppOutput = hPutStrLn xmproc
-           , ppTitle = xmobarColor "#657b83" "" . shorten 100
-           , ppCurrent = xmobarColor "#c0c0c0" "" . wrap "" ""
-           , ppSep     = xmobarColor "#c0c0c0" "" " | "
-           , ppUrgent  = xmobarColor "#ff69b4" ""
-           , ppLayout = const "" -- to disable the layout info on xmobar
-}
+import XMonad.Util.Run
+import XMonad.Util.NamedScratchpad
+
+
+import GHC.IO.Handle.Types
+
+
+import Colors
+
+-- Xmobar
+myXmobarPP :: PP
+myXmobarPP = xmobarPP
+    { ppCurrent         = xmobarColor myBlue myBlack
+    , ppHiddenNoWindows = xmobarColor myGray myBlack
+    , ppUrgent          = xmobarColor myDarkGray myDarkRed
+    , ppVisible         = xmobarColor myGreen myBlack
+    , ppSep             = " : "
+    , ppLayout          = xmobarColor myLighterGray ""
+    , ppOrder           = \(ws:l:t:_) -> [" " ++ l,ws,t]
+    , ppTitle           = xmobarColor myLighterGray "" . shorten 70 
+    , ppSort            = (. namedScratchpadFilterOutWorkspace) <$> ppSort def
+    }
+
+myXmobar :: String
+myXmobar = "LC_ALL=ru_RU.UTF-8 xmobar"
