@@ -9,7 +9,7 @@ import XMonad.Hooks.SetWMName
 -- | Perform arbitrary actions at xmonad startup.
 myStartupHook :: X ()
 myStartupHook =
-  setWMName "LG3d"
+  setWMName "LG3D"
   >> spawn "redshift-gtk-restart"
   -- >> spawn "/usr/bin/nm-applet"
   >> spawn "compton -b --config /home/caninodev/.config/compton.conf"
