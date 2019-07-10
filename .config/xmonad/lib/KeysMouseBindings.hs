@@ -1,10 +1,10 @@
 module KeysMouseBindings (
-myTerminal,
-myKeys,
-myMouseBindings,
-myClickJustFocuses,
-myFocusFollowsMouse,
-myDefaultModMask
+  myTerminal,
+  myKeys,
+  myMouseBindings,
+  myClickJustFocuses,
+  myFocusFollowsMouse,
+  myDefaultModMask
 )
 where
 
@@ -22,7 +22,9 @@ import XMonad.Layout.Monitor
 import XMonad.Actions.Minimize
 import XMonad.Prompt
 import XMonad.Prompt.Window
+import XMonad.Util.NamedScratchpad
 
+import ManageHook
 ------------------------------------------------------------------------
 -- Key bindings:
 -- | The preferred terminal program, which is used in a binding below and by
@@ -62,13 +64,14 @@ myKeys conf@XConfig {XMonad.modMask = modMask} =
     -- launching and killing programs
   [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
   , ((modMask, xK_p), shellPrompt myXPConfig)
-  , ((modMask .|. shiftMask, xK_p), windowPrompt myXPConfig Goto wsWindows)
-  , ((modMask, xK_b), brwsrPrompt myBrowser myBrwsrConfig) -- %! Launch web browser
+  , ((modMask .|. shiftMask, xK_p), windowPrompt myXPConfig Goto allWindows)
+  , ((modMask, xK_w), brwsrPrompt myBrowser myBrwsrConfig) -- %! Launch web browser
   , ((modMask .|. shiftMask, xK_c), kill) -- %! Close the focused window
   , ((modMask, xK_s), SM.submap $ searchEngineMap $ S.promptSearch mySrchConfig)
   , ((modMask, xK_space), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
   , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
   , ((modMask, xK_n), refresh) -- %! Resize viewed windows to the correct size
+  , ((modMask, xK_y), namedScratchpadAction scratchpads "htop")
 
     -- move focus up or down the window stack
   , ((modMask, xK_Tab), windows W.focusDown) -- %! Move focus to the next window

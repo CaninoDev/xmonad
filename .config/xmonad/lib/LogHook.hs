@@ -2,29 +2,42 @@ module LogHook where
 
 import XMonad
 import XMonad.Hooks.DynamicLog
-
+import XMonad.Actions.CycleWS
+import XMonad.Layout.ShowWName
 import XMonad.Util.Run
-import XMonad.Util.NamedScratchpad
-
 
 import GHC.IO.Handle.Types
 
-
 import Colors
 
--- Xmobar
-myXmobarPP :: PP
+-- xmobar log hook configuration
+
+-- xmobarEscape :: String -> String
+-- xmobarEscape = concatMap doubleLts
+--   where doubleLts '<' = "<<"
+--         doubleLts x   = [x]
+
+-- -- | make a workspace name clickable for xmobar.
+-- --   Works as long as the first character of the name is the corresponding key.  If you
+-- --   want meaningful names, use things like 1-fooxmobarClickWrap :: String -> String
+-- xmobarClickWrap ws = wrap start end (xmobarEscape ws)
+--   where start = "<action=xdotool key super+" ++ wsKeyName ws ++ ">"
+--         end   = "</action>"
+
+-- wsKeyName::String -> String
+-- wsKeyName ws = case head ws of { '=' -> "equal"; '-' -> "minus"; x -> [x]; }
+
+--xmobarLogHook pipe = dynamicLogWithPP xmobarPP
 myXmobarPP = xmobarPP
-    { ppCurrent         = xmobarColor myBlue myBlack
-    , ppHiddenNoWindows = xmobarColor myGray myBlack
-    , ppUrgent          = xmobarColor myDarkGray myDarkRed
-    , ppVisible         = xmobarColor myGreen myBlack
-    , ppSep             = " : "
-    , ppLayout          = xmobarColor myLighterGray ""
-    , ppOrder           = \(ws:l:t:_) -> [" " ++ l,ws,t]
-    , ppTitle           = xmobarColor myLighterGray "" . shorten 70 
-    , ppSort            = (. namedScratchpadFilterOutWorkspace) <$> ppSort def
+    {
+    --ppOutput = hPutStrLn
+    ppCurrent = xmobarColor myYellow "" . wrap "[" "]"          . xmobarClickWrap
+    , ppHidden  = xmobarColor myDarkestGray ""                  . xmobarClickWrap
+    , ppHiddenNoWindows = xmobarColor  myWhite ""               . xmobarClickWrap
+    , ppVisible = xmobarColor myLighterstGray "" . wrap "(" ")" . xmobarClickWrap
+    , ppUrgent  = xmobarColor myRed myYellow                    . xmobarClickWrap
+    , ppTitle   = xmobarColor myGreen  ""
     }
 
 myXmobar :: String
-myXmobar = "LC_ALL=ru_RU.UTF-8 xmobar"
+myXmobar = "xmobar"
